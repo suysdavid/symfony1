@@ -844,7 +844,7 @@ class sfCultureInfo
   {
     $oldLocale = setlocale(LC_COLLATE, 0);
     setlocale(LC_COLLATE, $this->getName());
-    asort($array, SORT_LOCALE_STRING);
+    @asort($array, SORT_LOCALE_STRING);
     setlocale(LC_COLLATE, $oldLocale);
   }
 }
