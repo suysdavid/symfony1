@@ -204,6 +204,12 @@ class sfUser implements ArrayAccess
     return $this->hasAttribute($name, 'symfony/user/sfUser/flash');
   }
 
+  public function removeFlash($name)
+  {
+    $this->attributeHolder->remove($name, null, 'symfony/user/sfUser/flash');
+    $this->attributeHolder->remove($name, null, 'symfony/user/sfUser/flash/remove');
+  }
+
   /**
    * Gets culture.
    *
