@@ -1262,7 +1262,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		// -- which is unexpected, to say the least.
 		if (\$v === null || \$v === '') {
 			\$dt = null;
-		} elseif (\$v instanceof DateTime) {
+		} elseif (\$v instanceof DateTimeInterface) {
 			\$dt = \$v;
 		} else {
 			// some string/numeric value passed; we normalize that so that we can
@@ -1703,7 +1703,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * @param      string \$keyType (optional) One of the class type constants BasePeer::TYPE_PHPNAME, BasePeer::TYPE_STUDLYPHPNAME
 	 *                        BasePeer::TYPE_COLNAME, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_NUM. Defaults to BasePeer::TYPE_PHPNAME.
 	 * @param      boolean \$includeLazyLoadColumns (optional) Whether to include lazy loaded columns.  Defaults to TRUE.
-	 * @return     an associative array containing the field names (as keys) and field values
+	 * @return     array<string,string> an associative array containing the field names (as keys) and field values
 	 */";
 	}
 
@@ -2628,7 +2628,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Get the associated $className object
 	 *
 	 * @param      PropelPDO Optional Connection object.
-	 * @return     $className The associated $className object.
+	 * @return     null|$className The associated $className object.
 	 * @throws     PropelException
 	 */
 	public function get".$this->getFKPhpNameAffix($fk, $plural = false)."(PropelPDO \$con = null)
@@ -3212,7 +3212,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Gets a single $className object, which is related to this object by a one-to-one relationship.
 	 *
 	 * @param      PropelPDO \$con
-	 * @return     $className
+	 * @return     null|$className
 	 * @throws     PropelException
 	 */
 	public function get".$this->getRefFKPhpNameAffix($refFK, $plural = false)."(PropelPDO \$con = null)
