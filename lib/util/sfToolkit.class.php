@@ -348,7 +348,14 @@ class sfToolkit
    */
   public static function replaceConstants($value)
   {
-    return is_string($value) ? preg_replace_callback('/%(.+?)%/', create_function('$v', 'return sfConfig::has(strtolower($v[1])) ? sfConfig::get(strtolower($v[1])) : "%{$v[1]}%";'), $value) : $value;
+    if (is_string($value)) {
+      $callback = function($v) {
+        return sfConfig::has(strtolower($v[1])) ? sfConfig::get(strtolower($v[1])) : "%{$v[1]}%";
+      };
+      return preg_replace_callback('/%(.+?)%/', $callback, $value);
+    } else {
+      return $value;
+    }
   }
 
   /**
