@@ -559,7 +559,7 @@ abstract class ".$this->getClassname(). $extendingPeerClass . " {
 	 *
 	 * @param      Criteria \$criteria object used to create the SELECT statement.
 	 * @param      PropelPDO \$con
-	 * @return     ".$this->getObjectClassname()."
+	 * @return     null|".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())."
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -587,7 +587,7 @@ abstract class ".$this->getClassname(). $extendingPeerClass . " {
 	 *
 	 * @param      Criteria \$criteria The Criteria object used to build the SELECT statement.
 	 * @param      PropelPDO \$con
-	 * @return     array Array of selected Objects
+	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())."[] Array of selected Objects
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -1652,7 +1652,7 @@ abstract class ".$this->getClassname(). $extendingPeerClass . " {
 	 *
 	 * @param      ".$col->getPhpType()." \$pk the primary key.
 	 * @param      PropelPDO \$con the connection to use
-	 * @return     " .$this->getObjectClassname(). "
+	 * @return     " .$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname()). "
 	 */
 	public static function ".$this->getRetrieveMethodName()."(\$pk, PropelPDO \$con = null)
 	{
@@ -1731,7 +1731,7 @@ abstract class ".$this->getClassname(). $extendingPeerClass . " {
 		}
 		$script .= "
 	 * @param      PropelPDO \$con
-	 * @return     ".$this->getObjectClassname()."
+	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())."
 	 */
 	public static function ".$this->getRetrieveMethodName()."(";
 
@@ -2380,7 +2380,7 @@ abstract class ".$this->getClassname(). $extendingPeerClass . " {
 	 * @param      Criteria  \$criteria
 	 * @param      PropelPDO \$con
 	 * @param      String    \$join_behavior the type of joins to use, defaults to $join_behavior
-	 * @return     array Array of ".$this->getObjectClassname()." objects.
+	 * @return     " . $this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname()) . "[] Array of ".$this->getObjectClassname()." objects.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
