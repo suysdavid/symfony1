@@ -592,7 +592,7 @@ class BasePeer
 					} else if ($type == PropelColumnTypes::TIME) {
 						$value = date($db->getTimeFormatter(), $value);
 					}
-				} elseif ($value instanceof DateTime && $cMap->isTemporal()) { // it's a timestamp that needs to be formatted
+				} elseif ($value instanceof DateTimeInterface && $cMap->isTemporal()) { // it's a timestamp that needs to be formatted
 					if ($type == PropelColumnTypes::TIMESTAMP || $type == PropelColumnTypes::BU_TIMESTAMP) {
 						$value = $value->format($db->getTimestampFormatter());
 					} else if ($type == PropelColumnTypes::DATE || $type == PropelColumnTypes::BU_DATE) {
