@@ -75,7 +75,7 @@ class PropelTypes {
 	const LONGVARCHAR_NATIVE_TYPE = "string";
 	const CLOB_NATIVE_TYPE = "string"; // Clob
 	const NUMERIC_NATIVE_TYPE = "string";
-	const DECIMAL_NATIVE_TYPE = "string";
+	const DECIMAL_NATIVE_TYPE = "float";
 	const BOOLEAN_NATIVE_TYPE = "boolean";
 	const TINYINT_NATIVE_TYPE = "int";
 	const SMALLINT_NATIVE_TYPE = "int";

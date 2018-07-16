@@ -507,7 +507,7 @@ class Propel
 	 * @param      string $name The datasource name that is used to look up the DSN from the runtime configuation file.
 	 * @param      string $mode The connection mode (this applies to replication systems).
 	 *
-	 * @return     PDO A database connection
+	 * @return     \PropelPDO A database connection
 	 *
 	 * @throws     PropelException - if connection cannot be configured or initialized.
 	 */

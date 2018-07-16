@@ -1062,7 +1062,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Set the value of [$clo] column.
 	 * ".$col->getDescription()."
 	 * @param      ".$col->getPhpType()." \$v new value
-	 * @return     ".$this->getObjectClassname()." The current object (for fluent API support)
+	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
 	 */";
 	}
 
@@ -1241,7 +1241,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * ".$col->getDescription()."
 	 * @param      mixed \$v string, integer (timestamp), or DateTime value.  Empty string will
 	 *						be treated as NULL for temporal objects.
-	 * @return     ".$this->getObjectClassname()." The current object (for fluent API support)
+	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
 	 */
 	".$visibility." function set$cfc(\$v)
 	{";
@@ -2522,7 +2522,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Declares an association between this object and a $className object.
 	 *
 	 * @param      $className \$v
-	 * @return     ".$this->getObjectClassname()." The current object (for fluent API support)
+	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
 	public function set".$this->getFKPhpNameAffix($fk, $plural = false)."($className \$v = null)
@@ -2628,7 +2628,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Get the associated $className object
 	 *
 	 * @param      PropelPDO Optional Connection object.
-	 * @return     null|$className The associated $className object.
+	 * @return     null|".$this->getForeignTable($fk)->getAttribute('futurePhpName', $className)." The associated $className object.
 	 * @throws     PropelException
 	 */
 	public function get".$this->getFKPhpNameAffix($fk, $plural = false)."(PropelPDO \$con = null)
@@ -2703,7 +2703,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * overridden in <code>".$table->getPhpName()."</code>.";
 		}
 		$script .= "
-	 * @return     ".$this->getObjectClassname()." The current object (for fluent API support)
+	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
 	public function set".$methodAffix."Key(\$key)
@@ -3123,7 +3123,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 *
 	 * @param      PropelPDO \$con
 	 * @param      Criteria \$criteria
-	 * @return     {$className}[]
+	 * @return     ".$tblFK->getAttribute('futurePhpName', $className)."[]
 	 * @throws     PropelException
 	 */
 	public function get$relCol(\$criteria = null, PropelPDO \$con = null)
@@ -3212,7 +3212,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Gets a single $className object, which is related to this object by a one-to-one relationship.
 	 *
 	 * @param      PropelPDO \$con
-	 * @return     null|$className
+	 * @return     null|".$tblFK->getAttribute('futurePhpName', $className)."
 	 * @throws     PropelException
 	 */
 	public function get".$this->getRefFKPhpNameAffix($refFK, $plural = false)."(PropelPDO \$con = null)
@@ -3268,7 +3268,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Sets a single $className object as related to this object by a one-to-one relationship.
 	 *
 	 * @param      $className \$l $className
-	 * @return     ".$this->getObjectClassname()." The current object (for fluent API support)
+	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
 	public function set".$this->getRefFKPhpNameAffix($refFK, $plural = false)."($className \$v)
@@ -3917,7 +3917,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * objects.
 	 *
 	 * @param      boolean \$deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @return     ".$this->getObjectClassname()." Clone of current object.
+	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." Clone of current object.
 	 * @throws     PropelException
 	 */
 	public function copy(\$deepCopy = false)
