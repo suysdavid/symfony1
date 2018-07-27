@@ -114,5 +114,5 @@ interface Persistent {
 	 * @return     void
 	 * @throws     Exception
 	 */
-	public function save(PropelPDO $con = null);
+    public function save(PropelPDO $con = null, $resolveDependencyProblems = false);
 }

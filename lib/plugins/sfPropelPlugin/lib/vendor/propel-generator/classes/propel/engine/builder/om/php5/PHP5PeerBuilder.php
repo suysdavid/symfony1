@@ -1652,7 +1652,7 @@ abstract class ".$this->getClassname(). $extendingPeerClass . " {
 	 *
 	 * @param      ".$col->getPhpType()." \$pk the primary key.
 	 * @param      PropelPDO \$con the connection to use
-	 * @return     " .$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname()). "
+	 * @return     " .$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname()). "|null
 	 */
 	public static function ".$this->getRetrieveMethodName()."(\$pk, PropelPDO \$con = null)
 	{

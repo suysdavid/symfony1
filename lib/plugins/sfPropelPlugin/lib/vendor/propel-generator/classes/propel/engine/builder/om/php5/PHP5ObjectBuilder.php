@@ -370,7 +370,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 			}
 		}
 		$script .= "
-	 * @var        $cptype
+	 * @var        ".($col->getDefaultValue() !== null && !$col->getDefaultValue()->isExpression() ? '' : 'null|')."$cptype
 	 */";
 	}
 
@@ -761,7 +761,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		if ($col->isNotNull() && $col->getTable()->getAttribute('throwOnNull', false)) {
             $script .= "
 		if (\$this->$clo === null) {
-            throw new Exception('Trying to fetch date that is not set');
+            throw new UnexpectedValueException('Trying to fetch date that is not set');
 		}
 ";
         } else {
@@ -871,7 +871,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * @param      PropelPDO An optional PropelPDO connection to use for fetching this lazy-loaded column.";
 		}
 		$script .= "
-	 * @return     ".$col->getPhpType()."
+	 * @return     ".(!$col->isNotNull() || $col->isAutoIncrement() ? 'null|' : '').$col->getPhpType()."
 	 */";
 	}
 
@@ -910,7 +910,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		}
 
 		$script .= "
-		return \$this->$clo;";
+		return ".(!$col->isNotNull() || $col->isAutoIncrement() || 'resource' === $col->getPhpType() ? '' : '(' . $col->getPhpType() . ') ')."\$this->$clo;";
 	}
 
 	/**
@@ -1061,7 +1061,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	/**
 	 * Set the value of [$clo] column.
 	 * ".$col->getDescription()."
-	 * @param      ".$col->getPhpType()." \$v new value
+	 * @param      ".(!$col->isNotNull() || $col->isAutoIncrement() ? 'null|' : '').$col->getPhpType()." \$v new value
 	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
 	 */";
 	}
@@ -1321,11 +1321,20 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		// Perform type-casting to ensure that we can use type-sensitive
 		// checking in mutators.
 		if ($col->isPhpPrimitiveType()) {
-			$script .= "
+			if (!$col->isNotNull() || $col->isAutoIncrement()) {
+                $script .= "
 		if (\$v !== null) {
-			\$v = (".$col->getPhpType().") \$v;
+            ";
+            } else {
+                $script .= "
+        ";
+            }
+            $script .= "\$v = (".$col->getPhpType().") \$v;";
+			if (!$col->isNotNull() || $col->isAutoIncrement()) {
+                $script .= "
 		}
 ";
+			}
 		}
 
 		$script .= "
@@ -2593,6 +2602,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		$conditional = "";
 		$argmap = array(); // foreign -> local mapping
 		$argsize = 0;
+		$anyColumnNullable = false;
 		foreach ($fk->getLocalColumns() as $columnName) {
 			
 			$lfmap = $fk->getLocalForeignMapping();
@@ -2612,6 +2622,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 				$conditional .= $and . "\$this->" . $clo ." !== null";
 			}
 			
+			$anyColumnNullable = $anyColumnNullable || !$localColumn->isNotNull();
 			$argmap[] = array('foreign' => $foreignColumn, 'local' => $localColumn);
 			$and = " && ";
 			$comma = ", ";
@@ -2621,6 +2632,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		// If the related column is a primary kay and if it's a simple association,
 		// The use retrieveByPk() instead of doSelect() to take advantage of instance pooling
 		$useRetrieveByPk = count($argmap) == 1 && $argmap[0]['foreign']->isPrimaryKey();
+		$throwOnNull = !$anyColumnNullable && $table->getAttribute('throwOnNull', false);
 
 		$script .= "
 
@@ -2628,7 +2640,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Get the associated $className object
 	 *
 	 * @param      PropelPDO Optional Connection object.
-	 * @return     null|".$this->getForeignTable($fk)->getAttribute('futurePhpName', $className)." The associated $className object.
+	 * @return     ".($throwOnNull?"":"null|").$this->getForeignTable($fk)->getAttribute('futurePhpName', $className)." The associated $className object.
 	 * @throws     PropelException
 	 */
 	public function get".$this->getFKPhpNameAffix($fk, $plural = false)."(PropelPDO \$con = null)
@@ -2667,7 +2679,16 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		}
 
 		$script .= "
-		}
+        }";
+
+        if ($throwOnNull) {
+			$script .= "
+		if (null === \$this->$varName) {
+			throw new UnexpectedValueException('Trying to fetch related entity that is not set');
+		}";
+        }
+
+		$script .= "
 		return \$this->$varName;
 	}
 ";
@@ -3212,7 +3233,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Gets a single $className object, which is related to this object by a one-to-one relationship.
 	 *
 	 * @param      PropelPDO \$con
-	 * @return     null|".$tblFK->getAttribute('futurePhpName', $className)."
+	 * @return     ".($throwOnNull?"":"null|").$tblFK->getAttribute('futurePhpName', $className)."
 	 * @throws     PropelException
 	 */
 	public function get".$this->getRefFKPhpNameAffix($refFK, $plural = false)."(PropelPDO \$con = null)
@@ -3233,16 +3254,28 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		// is represented in this foreign key
 
 		$params = array();
+		$anyColumnNullable = false;
 		foreach ($tblFK->getPrimaryKey() as $col) {
 			$localColumn = $table->getColumn($lfmap[$col->getName()]);
+			$anyColumnNullable = $anyColumnNullable || !$localColumn->isNotNull();
 			$clo = strtolower($localColumn->getName());
 			$params[] = "\$this->$clo";
 		}
+		$throwOnNull = !$anyColumnNullable && $table->getAttribute('throwOnNull', false);
 
 		$script .= "
 			\$this->$varName = ".$joinedTableObjectBuilder->getPeerClassname()."::retrieveByPK(".implode(", ", $params).", \$con);
-		}
+        }
+";
 
+        if ($throwOnNull) {
+			$script .= "
+		if (null === \$this->$varName) {
+			throw new UnexpectedValueException('Trying to fetch related entity that is not set');
+		}";
+        }
+
+		$script .= "
 		return \$this->$varName;
 	}
 ";
@@ -3917,7 +3950,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * objects.
 	 *
 	 * @param      boolean \$deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." Clone of current object.
+	 * @return     static Clone of current object.
 	 * @throws     PropelException
 	 */
 	public function copy(\$deepCopy = false)
