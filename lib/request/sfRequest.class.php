@@ -273,7 +273,6 @@ abstract class sfRequest implements ArrayAccess
    * Sets a parameter for the current request.
    *
    * @param string $name   Parameter name
-   * @param string $value  Parameter value
    *
    */
   public function setParameter($name, $value)

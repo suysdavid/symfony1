@@ -871,7 +871,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * @param      PropelPDO An optional PropelPDO connection to use for fetching this lazy-loaded column.";
 		}
 		$script .= "
-	 * @return     ".(!$col->isNotNull() || $col->isAutoIncrement() ? 'null|' : '').$col->getPhpType()."
+	 * @return     ".(!$col->isNotNull() || $col->isAutoIncrement() || 'resource' === $col->getPhpType() ? 'null|' : '').$col->getPhpType()."
 	 */";
 	}
 
