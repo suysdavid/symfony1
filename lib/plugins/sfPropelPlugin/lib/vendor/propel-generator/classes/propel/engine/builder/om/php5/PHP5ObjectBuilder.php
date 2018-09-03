@@ -675,7 +675,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * @return     mixed Formatted date/time value as string or $dateTimeClass object (if format is NULL), NULL if column is NULL" .($handleMysqlDate ? ', and 0 if column value is ' . $mysqlInvalidDateString : '');
             } else {
 			    $script .= "
-	 * @return     DateTime";
+	 * @return     " . (!$col->isNotNull() ? 'null|' : '') . 'DateTime';
             }
 		} else {
 			$script .= "

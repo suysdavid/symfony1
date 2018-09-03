@@ -85,7 +85,7 @@ abstract class sfPager implements Iterator, Countable
   /**
    * Returns the current pager's max record limit.
    *
-   * @return integer
+   * @return bool|integer
    */
   public function getMaxRecordLimit()
   {

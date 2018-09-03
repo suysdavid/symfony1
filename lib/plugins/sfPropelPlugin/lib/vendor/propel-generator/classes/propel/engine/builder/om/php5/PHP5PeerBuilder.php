@@ -846,7 +846,7 @@ abstract class ".$this->getClassname(). $extendingPeerClass . " {
 	 * a multi-column primary key, a serialize()d version of the primary key will be returned.
 	 *
 	 * @param      string \$key The key (@see getPrimaryKeyHash()) for this instance.
-	 * @return     ".$this->getObjectClassname()." Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+	 * @return     null|".$this->getObjectClassname()." Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
 	 * @see        getPrimaryKeyHash()
 	 */
 	public static function getInstanceFromPool(\$key)

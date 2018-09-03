@@ -362,7 +362,7 @@ class Criteria implements IteratorAggregate {
 	 * Method to return criteria related to columns in a table.
 	 *
 	 * @param      string $column Column name.
-	 * @return     Criterion A Criterion or null if $column is invalid.
+	 * @return     null|Criterion A Criterion or null if $column is invalid.
 	 */
 	public function getCriterion($column)
 	{
@@ -391,7 +391,7 @@ class Criteria implements IteratorAggregate {
 	 * Method to return a String table name.
 	 *
 	 * @param      string $name Name of the key.
-	 * @return     string The value of the object at key.
+	 * @return     null|string The value of the object at key.
 	 */
 	public function getColumnName($name)
 	{
@@ -423,7 +423,7 @@ class Criteria implements IteratorAggregate {
 	 * Method to return a comparison String.
 	 *
 	 * @param      string $key String name of the key.
-	 * @return     string A String with the value of the object at key.
+	 * @return     null|string A String with the value of the object at key.
 	 */
 	public function getComparison($key)
 	{
@@ -487,7 +487,7 @@ class Criteria implements IteratorAggregate {
 	 * Method to return a String table name.
 	 *
 	 * @param      string $name The name of the key.
-	 * @return     string The value of table for criterion at key.
+	 * @return     null|string The value of table for criterion at key.
 	 */
 	public function getTableName($name)
 	{
