@@ -667,7 +667,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		}
 		$script .= "
 	 *
-	 * @param      string \$format The date/time format string (either date()-style or strftime()-style).
+	 * @param      null|string \$format The date/time format string (either date()-style or strftime()-style).
 	 *							If format is NULL, then the raw ".($useDateTime ? 'DateTime object' : 'unix timestamp integer')." will be returned.";
 		if ($useDateTime) {
             if($this->getTemporalFormat($col) !== null) {

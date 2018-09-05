@@ -249,8 +249,7 @@ abstract class sfRequest implements ArrayAccess
    * Retrieves a parameter for the current request.
    *
    * @param string $name     Parameter name
-   * @param string $default  Parameter default value
-   *
+   * @param string|array|null $default  Parameter default value
    */
   public function getParameter($name, $default = null)
   {
