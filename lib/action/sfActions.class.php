@@ -28,7 +28,7 @@ abstract class sfActions extends sfAction
    *
    * @param sfRequest $request The current sfRequest object
    *
-   * @return string    A string containing the view name associated with this action
+   * @return null|string    A string containing the view name associated with this action
    *
    * @throws sfInitializationException
    *

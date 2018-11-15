@@ -111,7 +111,7 @@ interface Persistent {
 	/**
 	 * Saves the object.
 	 * @param      PropelPDO $con
-	 * @return     void
+	 * @return     int
 	 * @throws     Exception
 	 */
     public function save(PropelPDO $con = null, $resolveDependencyProblems = false);
