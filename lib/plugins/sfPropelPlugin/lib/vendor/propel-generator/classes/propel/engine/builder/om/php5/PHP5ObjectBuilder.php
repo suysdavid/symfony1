@@ -1062,7 +1062,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Set the value of [$clo] column.
 	 * ".$col->getDescription()."
 	 * @param      ".(!$col->isNotNull() || $col->isAutoIncrement() ? 'null|' : '').$col->getPhpType()." \$v new value
-	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
+	 * @return     static The current object (for fluent API support)
 	 */";
 	}
 
@@ -1241,7 +1241,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * ".$col->getDescription()."
 	 * @param      mixed \$v string, integer (timestamp), or DateTime value.  Empty string will
 	 *						be treated as NULL for temporal objects.
-	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
+	 * @return     static The current object (for fluent API support)
 	 */
 	".$visibility." function set$cfc(\$v)
 	{";
@@ -2531,7 +2531,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Declares an association between this object and a $className object.
 	 *
 	 * @param      $className \$v
-	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
+	 * @return     static The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
 	public function set".$this->getFKPhpNameAffix($fk, $plural = false)."($className \$v = null)
@@ -2724,7 +2724,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * overridden in <code>".$table->getPhpName()."</code>.";
 		}
 		$script .= "
-	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
+	 * @return     static The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
 	public function set".$methodAffix."Key(\$key)
@@ -3301,7 +3301,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 * Sets a single $className object as related to this object by a one-to-one relationship.
 	 *
 	 * @param      $className \$l $className
-	 * @return     ".$this->getTable()->getAttribute('futurePhpName', $this->getObjectClassname())." The current object (for fluent API support)
+	 * @return     static The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
 	public function set".$this->getRefFKPhpNameAffix($refFK, $plural = false)."($className \$v)
