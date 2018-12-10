@@ -1061,7 +1061,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	/**
 	 * Set the value of [$clo] column.
 	 * ".$col->getDescription()."
-	 * @param      ".(!$col->isNotNull() || $col->isAutoIncrement() ? 'null|' : '').$col->getPhpType()." \$v new value
+	 * @param      ".(!$col->isNotNull() || $col->isAutoIncrement() ? 'null|' : '').('resource' === $col->getPhpType() ? 'string|' : '').$col->getPhpType()." \$v new value
 	 * @return     static The current object (for fluent API support)
 	 */";
 	}

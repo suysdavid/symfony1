@@ -645,7 +645,7 @@ abstract class sfTask
    * @param array    $arguments  An array of arguments
    * @param array    $options    An array of options
    *
-   * @return integer 0 if everything went fine, or an error code
+   * @return void|int 0 if everything went fine, or an error code
    */
    abstract protected function execute($arguments = array(), $options = array());
 
