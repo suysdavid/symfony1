@@ -34,13 +34,13 @@ abstract class BaseObject {
 
 	/**
 	 * attribute to determine if this object has previously been saved.
-	 * @var        boolean
+	 * @var        bool
 	 */
 	private $_new = true;
 
 	/**
 	 * attribute to determine whether this object has been deleted.
-	 * @var        boolean
+	 * @var        bool
 	 */
 	private $_deleted = false;
 
@@ -61,7 +61,7 @@ abstract class BaseObject {
 	/**
 	 * Returns whether the object has been modified.
 	 *
-	 * @return     boolean True if the object has been modified.
+	 * @return     bool True if the object has been modified.
 	 */
 	public function isModified()
 	{
@@ -72,7 +72,7 @@ abstract class BaseObject {
 	 * Has specified column been modified?
 	 *
 	 * @param      string $col
-	 * @return     boolean True if $col has been modified.
+	 * @return     bool True if $col has been modified.
 	 */
 	public function isColumnModified($col)
 	{
@@ -93,7 +93,7 @@ abstract class BaseObject {
 	 * be false, if the object was retrieved from storage or was created
 	 * and then saved.
 	 *
-	 * @return     true, if the object has never been persisted.
+	 * @return     bool true, if the object has never been persisted.
 	 */
 	public function isNew()
 	{
@@ -104,16 +104,16 @@ abstract class BaseObject {
 	 * Setter for the isNew attribute.  This method will be called
 	 * by Propel-generated children and Peers.
 	 *
-	 * @param      boolean $b the state of the object.
+	 * @param      bool $b the state of the object.
 	 */
 	public function setNew($b)
 	{
-		$this->_new = (boolean) $b;
+		$this->_new = (bool) $b;
 	}
 
 	/**
 	 * Whether this object has been deleted.
-	 * @return     boolean The deleted state of this object.
+	 * @return     bool The deleted state of this object.
 	 */
 	public function isDeleted()
 	{
@@ -122,18 +122,18 @@ abstract class BaseObject {
 
 	/**
 	 * Specify whether this object has been deleted.
-	 * @param      boolean $b The deleted state of this object.
+	 * @param      bool $b The deleted state of this object.
 	 * @return     void
 	 */
 	public function setDeleted($b)
 	{
-		$this->_deleted = (boolean) $b;
+		$this->_deleted = (bool) $b;
 	}
 
 	/**
 	 * Code to be run before persisting the object
 	 * @param PropelPDO $con
-	 * @return boolean
+	 * @return bool
 	 */
 	public function preSave(PropelPDO $con = null)
 	{
@@ -149,7 +149,7 @@ abstract class BaseObject {
 	/**
 	 * Code to be run before inserting to database
 	 * @param PropelPDO $con
-	 * @return boolean
+	 * @return bool
 	 */
 	public function preInsert(PropelPDO $con = null)
 	{
@@ -165,7 +165,7 @@ abstract class BaseObject {
 	/**
 	 * Code to be run before updating the object in database
 	 * @param PropelPDO $con
-	 * @return boolean
+	 * @return bool
 	 */
 	public function preUpdate(PropelPDO $con = null)
 	{
@@ -181,7 +181,7 @@ abstract class BaseObject {
 	/**
 	 * Code to be run before deleting the object in database
 	 * @param PropelPDO $con
-	 * @return boolean
+	 * @return bool
 	 */
 	public function preDelete(PropelPDO $con = null)
 	{
@@ -218,7 +218,7 @@ abstract class BaseObject {
 	 * <code>equals(BaseObject)</code>.  Otherwise, returns <code>false</code>.
 	 *
 	 * @param      obj The object to compare to.
-	 * @return     Whether equal to the object specified.
+	 * @return     bool Whether equal to the object specified.
 	 */
 	public function equals($obj)
 	{
@@ -256,7 +256,7 @@ abstract class BaseObject {
 	 *
 	 * @param      string $msg
 	 * @param      int $priority One of the Propel::LOG_* logging levels
-	 * @return     boolean
+	 * @return     bool
 	 */
 	protected function log($msg, $priority = Propel::LOG_INFO)
 	{
