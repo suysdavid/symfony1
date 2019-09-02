@@ -2898,7 +2898,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		} else {
 			$script .= "
 	/**
-	 * @var        {$className}[] Collection to store aggregation of $className objects.
+	 * @var        {$className}[]|null Collection to store aggregation of $className objects.
 	 */
 	protected $".$this->getRefFKCollVarName($refFK).";
 
