@@ -599,7 +599,7 @@ class Criteria implements IteratorAggregate {
 	 * don't like this, you can use the add(table, column, value) method.
 	 *
 	 * @param      string $critOrColumn The column to run the comparison on, or Criterion object.
-	 * @param      mixed $value
+	 * @param      int|string|float|null|bool|array<int>|array<string>|\DateTimeInterface $value
 	 * @param      string $comparison A String.
 	 *
 	 * @return     Criteria A modified Criteria object.
