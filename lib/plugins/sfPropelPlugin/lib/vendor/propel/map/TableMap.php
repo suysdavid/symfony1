@@ -500,7 +500,7 @@ class TableMap {
    * Gets the RelationMap objects of the table
    * This method will build the relations if they are not built yet
    * 
-   * @return      Array list of RelationMap objects
+   * @return      RelationMap[] list of RelationMap objects
    */
   public function getRelations()
   {
