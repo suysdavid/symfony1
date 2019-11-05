@@ -484,7 +484,7 @@ class sfCultureInfo
    * to display. Returns <code>array('Language','Country');</code>
    * 'Country' is omitted if the culture is neutral.
    *
-   * @return array array with language and country as elements, localized.
+   * @return string string with language and country as elements, localized.
    */
   public function getNativeName()
   {
