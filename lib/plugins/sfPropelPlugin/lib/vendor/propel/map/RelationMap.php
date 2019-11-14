@@ -159,7 +159,7 @@ class RelationMap {
   /**
    * Get the local columns
    *
-   * @return      Array list of ColumnMap objects
+   * @return      ColumnMap[] list of ColumnMap objects
    */
   public function getLocalColumns()
   {
@@ -169,7 +169,7 @@ class RelationMap {
   /**
    * Get the foreign columns
    *
-   * @return      Array list of ColumnMap objects
+   * @return      ColumnMap[] list of ColumnMap objects
    */
   public function getForeignColumns()
   {
