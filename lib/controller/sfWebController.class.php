@@ -51,7 +51,7 @@ abstract class sfWebController extends sfController
       {
         return $parameters;
       }
-  
+
       // strip fragment
       if (false !== ($pos = strpos($parameters, '#')))
       {
@@ -166,7 +166,7 @@ abstract class sfWebController extends sfController
   /**
    * Redirects the request to another URL.
    *
-   * @param string $url        An associative array of URL parameters or an internal URI as a string
+   * @param string|array<int|string,mixed> $url        An associative array of URL parameters or an internal URI as a string
    * @param int    $delay      A delay in seconds before redirecting. This is only needed on
    *                           browsers that do not support HTTP headers
    * @param int    $statusCode The status code
@@ -177,7 +177,7 @@ abstract class sfWebController extends sfController
   {
     if (empty($url))
     {
-      throw new InvalidArgumentException('Cannot redirect to an empty URL.'); 
+      throw new InvalidArgumentException('Cannot redirect to an empty URL.');
     }
 
     $url = $this->genUrl($url, true);
