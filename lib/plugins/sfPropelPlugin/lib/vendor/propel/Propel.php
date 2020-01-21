@@ -201,6 +201,7 @@ class Propel
 		'PreOrderNodeIterator'          => 'propel/om/PreOrderNodeIterator.php',
 		'NestedSetPreOrderNodeIterator' => 'propel/om/NestedSetPreOrderNodeIterator.php',
 		'NestedSetRecursiveIterator'    => 'propel/om/NestedSetRecursiveIterator.php',
+		'PropelPeer'                    => 'propel/om/PropelPeer.php',
 
 		'BasePeer'            => 'propel/util/BasePeer.php',
 		'NodePeer'            => 'propel/util/NodePeer.php',

@@ -81,7 +81,7 @@ abstract class BaseObject {
 
 	/**
 	 * Get the columns that have been modified in this object.
-	 * @return     array A unique list of the modified column names for this object.
+	 * @return string[] A unique list of the modified column names for this object.
 	 */
 	public function getModifiedColumns()
 	{

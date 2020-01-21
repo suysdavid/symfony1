@@ -56,6 +56,23 @@ interface Persistent {
 	public function isModified();
 
 	/**
+	 * Get the columns that have been modified in this object.
+	 * @return string[] A unique list of the modified column names for this object.
+	 */
+	public function getModifiedColumns();
+
+	/**
+	 * Returns a peer instance associated with this om.
+	 *
+	 * Since Peer classes are not to have any instance attributes, this method returns the
+	 * same instance for all member of this class. The method could therefore
+	 * be static, but this would prevent one from overriding the behavior.
+	 *
+	 * @return     PropelPeer
+	 */
+	public function getPeer();
+
+	/**
 	 * Has specified column been modified?
 	 *
 	 * @param      string $col
@@ -115,4 +132,17 @@ interface Persistent {
 	 * @throws     Exception
 	 */
     public function save(PropelPDO $con = null, $resolveDependencyProblems = false);
+
+	/**
+	 * Exports the object as an array.
+	 *
+	 * You can specify the key type of the array by passing one of the class
+	 * type constants.
+	 *
+	 * @param      string $keyType (optional) One of the class type constants BasePeer::TYPE_PHPNAME, BasePeer::TYPE_STUDLYPHPNAME
+	 *                        BasePeer::TYPE_COLNAME, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_NUM. Defaults to BasePeer::TYPE_PHPNAME.
+	 * @param      boolean $includeLazyLoadColumns (optional) Whether to include lazy loaded columns.  Defaults to TRUE.
+	 * @return     array<string,string> an associative array containing the field names (as keys) and field values
+	 */
+	public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true);
 }

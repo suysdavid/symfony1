@@ -120,7 +120,7 @@ class PHP5PeerBuilder extends PeerBuilder {
 		$script .= "
  * @package    ".$this->getPackage()."
  */
-abstract class ".$this->getClassname(). $extendingPeerClass . " {
+abstract class ".$this->getClassname(). $extendingPeerClass . " implements PropelPeer {
 ";
 	}
 
@@ -331,7 +331,7 @@ abstract class ".$this->getClassname(). $extendingPeerClass . " {
 	 * @param      string \$type The type of fieldnames to return:
 	 *                      One of the class type constants BasePeer::TYPE_PHPNAME, BasePeer::TYPE_STUDLYPHPNAME
 	 *                      BasePeer::TYPE_COLNAME, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_NUM
-	 * @return     array A list of field names
+	 * @return     string[] A list of field names
 	 */
 
 	static public function getFieldNames(\$type = BasePeer::TYPE_PHPNAME)
