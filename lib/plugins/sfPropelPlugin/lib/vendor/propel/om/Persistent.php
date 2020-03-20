@@ -165,4 +165,16 @@ interface Persistent {
 	 * @return     mixed Value of field at $pos
 	 */
 	public function getByPosition($pos);
+
+	/**
+	 * Reloads this object from datastore based on primary key and (optionally) resets all associated objects.
+	 *
+	 * This will only work if the object has been saved and has a valid primary key set.
+	 *
+	 * @param      boolean $deep (optional) Whether to also de-associated any related objects.
+	 * @param      PropelPDO $con (optional) The PropelPDO connection to use.
+	 * @return     void
+	 * @throws     PropelException - if this object is deleted, unsaved or doesn't have pk match in db
+	 */
+	public function reload($deep = false, PropelPDO $con = null);
 }
