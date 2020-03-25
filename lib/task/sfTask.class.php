@@ -642,8 +642,8 @@ abstract class sfTask
   /**
    * Executes the current task.
    *
-   * @param array    $arguments  An array of arguments
-   * @param array    $options    An array of options
+   * @param array<int|string,mixed>    $arguments  An array of arguments
+   * @param array<int|string,mixed>    $options    An array of options
    *
    * @return void|int 0 if everything went fine, or an error code
    */

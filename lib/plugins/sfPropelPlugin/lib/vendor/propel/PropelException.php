@@ -54,6 +54,9 @@ class PropelException extends Exception {
 		}
 	}
 
+    /**
+     * @return \PDOException|null
+     */
 	function getCause() {
 		return $this->cause;
 	}
