@@ -177,4 +177,14 @@ interface Persistent {
 	 * @throws     PropelException - if this object is deleted, unsaved or doesn't have pk match in db
 	 */
 	public function reload($deep = false, PropelPDO $con = null);
+
+	/**
+	 * Compares this with another <code>BaseObject</code> instance.  If
+	 * <code>obj</code> is an instance of <code>BaseObject</code>, delegates to
+	 * <code>equals(BaseObject)</code>.  Otherwise, returns <code>false</code>.
+	 *
+	 * @param      obj The object to compare to.
+	 * @return     bool Whether equal to the object specified.
+	 */
+	public function equals($obj);
 }
