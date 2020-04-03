@@ -70,7 +70,7 @@ interface Persistent {
 	 *
 	 * @return     PropelPeer
 	 */
-	public function getPeer();
+	public static function getPeer();
 
 	/**
 	 * Has specified column been modified?
@@ -187,4 +187,18 @@ interface Persistent {
 	 * @return     bool Whether equal to the object specified.
 	 */
 	public function equals($obj);
+
+	/**
+	 * Makes a copy of this object that will be inserted as a new row in table when saved.
+	 * It creates a new object filling in the simple attributes, but skipping any primary
+	 * keys that are defined for the table.
+	 *
+	 * If desired, this method can also make copies of all associated (fkey referrers)
+	 * objects.
+	 *
+	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
+	 * @return     static Clone of current object.
+	 * @throws     PropelException
+	 */
+	public function copy($deepCopy = false);
 }

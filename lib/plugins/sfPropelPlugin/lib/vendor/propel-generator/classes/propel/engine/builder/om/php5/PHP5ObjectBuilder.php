@@ -148,7 +148,15 @@ class PHP5ObjectBuilder extends ObjectBuilder {
 					throw new EngineException("Cannot get default value string for " . $col->getFullyQualifiedName());
 				}
 			}
-		}
+        } elseif (null === $col->getPhpDefaultValue() && null === $col->getDefaultValue() && $col->isTemporalType() && $col->isNotNull()) {
+			if ($col->getPropelType() === PropelTypes::TIMESTAMP) {
+				return "'0000-00-00 00:00:00'";
+			} elseif ($col->getPropelType() === PropelTypes::DATE) {
+				return "'0000-00-00'";
+			} elseif ($col->getPropelType() === PropelTypes::TIME) {
+				return "'00:00:00'";
+			}
+        }
 		return $defaultValue;
 	}
 
@@ -448,7 +456,7 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 	 **/
 	protected function addGetPeerFunctionOpen(&$script) {
 		$script .= "
-	public function getPeer()
+	public static function getPeer()
 	{";
 	}
 
@@ -582,7 +590,10 @@ abstract class ".$this->getClassname()." extends ".ClassTools::classname($this->
 		$colsWithDefaults = array();
 		foreach ($table->getColumns() as $col) {
 			$def = $col->getDefaultValue();
-			if ($def !== null && !$def->isExpression()) {
+			if (
+				($def !== null && !$def->isExpression())
+				|| ($def === null && null === $col->getPhpDefaultValue() && $col->isTemporalType() && $col->isNotNull())
+			) {
 				$colsWithDefaults[] = $col;
 			}
 		}
