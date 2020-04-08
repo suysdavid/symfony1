@@ -378,7 +378,7 @@ class TableMap {
   /**
    * Returns array of ColumnMap objects that make up the primary key for this table
    *
-   * @return     array ColumnMap[]
+   * @return     ColumnMap[]
    */
   public function getPrimaryKeys()
   {
