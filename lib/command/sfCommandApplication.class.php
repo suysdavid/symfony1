@@ -179,7 +179,7 @@ abstract class sfCommandApplication
   /**
    * Returns all registered tasks.
    *
-   * @return array An array of sfTask objects
+   * @return \sfTask[] An array of sfTask objects
    */
   public function getTasks()
   {

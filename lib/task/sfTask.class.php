@@ -208,7 +208,7 @@ abstract class sfTask
   /**
    * Returns the options objects.
    *
-   * @return sfCommandOption An array of sfCommandOption objects.
+   * @return sfCommandOption[] An array of sfCommandOption objects.
    */
   public function getOptions()
   {

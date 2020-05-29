@@ -18,9 +18,9 @@
  */
 abstract class sfWebDebugPanel
 {
-  protected
-    $webDebug = null,
-    $status   = sfLogger::INFO;
+  /** @var \sfWebDebug */
+  protected $webDebug = null;
+  protected $status = sfLogger::INFO;
 
   /**
    * Constructor.
