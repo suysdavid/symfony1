@@ -201,4 +201,20 @@ interface Persistent {
 	 * @throws     PropelException
 	 */
 	public function copy($deepCopy = false);
+
+	/**
+	 * Hydrates (populates) the object variables with values from the database resultset.
+	 *
+	 * An offset (0-based "start column") is specified so that objects can be hydrated
+	 * with a subset of the columns in the resultset rows.  This is needed, for example,
+	 * for results of JOIN queries where the resultset row includes columns from two or
+	 * more tables.
+	 *
+	 * @param      array $row The row returned by PDOStatement->fetch(PDO::FETCH_NUM)
+	 * @param      int $startcol 0-based offset column which indicates which restultset column to start with.
+	 * @param      boolean $rehydrate Whether this object is being re-hydrated from the database.
+	 * @return     int next starting column
+	 * @throws     PropelException  - Any caught Exception will be rewrapped as a PropelException.
+	 */
+	public function hydrate($row, $startcol = 0, $rehydrate = false);
 }
