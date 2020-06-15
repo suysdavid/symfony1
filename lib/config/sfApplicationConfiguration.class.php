@@ -618,7 +618,7 @@ abstract class sfApplicationConfiguration extends ProjectConfiguration
   /**
    * Loads helpers.
    *
-   * @param array  $helpers     An array of helpers to load
+   * @param string|string[]  $helpers     An array of helpers to load
    * @param string $moduleName  A module name (optional)
    */
   public function loadHelpers($helpers, $moduleName = '')

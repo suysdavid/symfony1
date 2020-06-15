@@ -37,10 +37,12 @@ abstract class sfLogger
   const INFO    = 6; // Informational
   const DEBUG   = 7; // Debug-level messages
 
-  protected
-    $dispatcher = null,
-    $options = array(),
-    $level = self::INFO;
+  /** @var \sfEventDispatcher */
+  protected $dispatcher;
+
+  protected $options = array();
+
+  protected $level = self::INFO;
 
   /**
    * Class constructor.
